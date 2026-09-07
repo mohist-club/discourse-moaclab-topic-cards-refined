@@ -21,7 +21,8 @@
   container-type: inline-size;
   display: block;
   width: 100%;
-  margin-top: 0;
+  margin: 0 auto 0 0 !important;
+  padding-left: 0 !important;
   background: transparent;
 
   .topic-list-header,
@@ -37,7 +38,8 @@
     gap: 0;
     width: 100%;
     max-width: var(--moac-card-feed-width);
-    margin-inline: 0 auto;
+    margin: 0 auto 0 0 !important;
+    padding-left: 0 !important;
     border: 0;
     background: transparent;
   }
@@ -106,7 +108,7 @@
     flex-direction: column;
     gap: 0 !important;
     min-width: 0;
-    padding: 10px 16px 8px;
+    padding: 10px 0 8px;
     border: 0 !important;
     background: transparent;
     box-shadow: none !important;
@@ -638,7 +640,7 @@
     }
 
     .moaclab-topic-card__body {
-      padding: 10px 14px 7px;
+      padding: 10px 0 7px;
     }
 
     .moaclab-topic-card__byline {
