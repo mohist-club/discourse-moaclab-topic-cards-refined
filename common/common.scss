@@ -10,10 +10,10 @@
   );
   --moac-card-muted: color-mix(in srgb, var(--primary) 58%, transparent);
   --moac-card-soft: color-mix(in srgb, var(--primary) 5%, var(--secondary));
-  --moac-card-action: #eef1f3;
-  --moac-card-action-hover: #e6eaed;
-  --moac-card-action-icon: #0f1f2e;
-  --moac-card-action-icon-hover: #0f1f2e;
+  --moac-card-action: #eef2f4;
+  --moac-card-action-hover: #e3e8eb;
+  --moac-card-action-icon: #000;
+  --moac-card-action-icon-hover: #000;
 }
 
 // Reddit-style feed card. Scoped to the transformed category list only.
@@ -455,25 +455,25 @@
     align-items: center;
     justify-content: center;
     width: auto;
-    height: 48px;
-    min-height: 48px;
-    padding: 0 18px !important;
-    gap: 10px;
+    height: 42px;
+    min-height: 42px;
+    padding: 0 17px !important;
+    gap: 9px;
     border: 0;
     border-radius: 999px;
     color: var(--moac-card-action-icon);
     background: var(--moac-card-action);
-    font-size: 18px;
-    font-weight: 740;
+    font-size: 15px;
+    font-weight: 760;
     line-height: 1;
     white-space: nowrap;
     text-decoration: none;
 
     .d-icon {
-      width: 28px;
-      height: 28px;
+      width: 22px;
+      height: 22px;
       color: inherit;
-      font-size: 28px;
+      font-size: 22px;
     }
 
     &:hover {
@@ -544,23 +544,23 @@
     align-items: center;
     justify-content: center;
     width: auto;
-    height: 48px;
-    min-height: 48px;
-    padding: 0 18px !important;
-    gap: 10px;
+    height: 42px;
+    min-height: 42px;
+    padding: 0 17px !important;
+    gap: 9px;
     border: 0;
     border-radius: 999px;
     color: var(--moac-card-action-icon);
     background: var(--moac-card-action);
-    font-size: 18px;
-    font-weight: 740;
+    font-size: 15px;
+    font-weight: 760;
     line-height: 1;
 
     .d-icon {
-      width: 28px;
-      height: 28px;
+      width: 22px;
+      height: 22px;
       color: inherit;
-      font-size: 28px;
+      font-size: 22px;
     }
 
     .topic__like-reaction {

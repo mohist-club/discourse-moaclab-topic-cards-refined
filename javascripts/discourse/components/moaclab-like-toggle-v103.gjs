@@ -96,7 +96,7 @@ export default class LikeToggle extends Component {
         }}
         {{on "click" this.toggleLike}}
       >
-        {{icon "heart"}}
+        {{icon "arrow-up"}}
         <span class="topic__like-count">{{number this.likeCount}}</span>
       </button>
     </span>

@@ -4,7 +4,7 @@
   "assets": {},
   "name": "Moaclab Topic Cards Refined",
   "authors": "Discourse, Moaclab",
-  "theme_version": "1.0.54",
+  "theme_version": "1.0.55",
   "component": true,
   "modifiers": {
     "topic_thumbnail_sizes": [
@@ -23,7 +23,8 @@
       "share",
       "chevron-left",
       "chevron-right",
-      "ellipsis"
+      "ellipsis",
+      "arrow-up"
     ],
     "serialize_topic_excerpts": true,
     "serialize_topic_op_likes_data": true

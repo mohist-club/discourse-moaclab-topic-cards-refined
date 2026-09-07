@@ -188,7 +188,7 @@ export default class MoaclabHighContextCard extends Component {
               title="分享"
             >
               {{icon "share"}}
-              <span>分享</span>
+              <span>Share</span>
             </a>
           </div>
         </div>
