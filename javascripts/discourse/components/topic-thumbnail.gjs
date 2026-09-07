@@ -1,11 +1,5 @@
 import Component from "@glimmer/component";
-import { tracked } from "@glimmer/tracking";
-import { action } from "@ember/object";
 import { computed } from "@ember/object";
-import { on } from "@ember/modifier";
-import icon from "discourse/helpers/d-icon";
-
-const TOPIC_GALLERY_CACHE = new Map();
 
 function absoluteUrl(url) {
   if (!url) {
@@ -19,28 +13,8 @@ function absoluteUrl(url) {
   }
 }
 
-function imageUrlsFromCooked(cooked = "") {
-  const container = document.createElement("div");
-  container.innerHTML = cooked;
-
-  return [...container.querySelectorAll("img")]
-    .map((image) =>
-      absoluteUrl(
-        image.dataset.originalSrc ||
-          image.dataset.largeSrc ||
-          image.currentSrc ||
-          image.getAttribute("src")
-      )
-    )
-    .filter(Boolean)
-    .filter((url, index, all) => all.indexOf(url) === index);
-}
-
 export default class TopicThumbnail extends Component {
   responsiveRatios = [1, 1.5, 2];
-  @tracked galleryImages = [];
-  @tracked selectedIndex = 0;
-  @tracked loadedTopicId = null;
 
   get topic() {
     return this.args.topic || this.args.outletArgs.topic;
@@ -113,10 +87,7 @@ export default class TopicThumbnail extends Component {
   }
 
   get displayImages() {
-    this.ensureGalleryLoaded();
-
-    const fallback = this.fallbackSrc ? [absoluteUrl(this.fallbackSrc)] : [];
-    return this.galleryImages.length ? this.galleryImages : fallback;
+    return this.fallbackSrc ? [absoluteUrl(this.fallbackSrc)] : [];
   }
 
   get hasMedia() {
@@ -124,93 +95,11 @@ export default class TopicThumbnail extends Component {
   }
 
   get currentImageUrl() {
-    return this.displayImages[this.selectedIndex] || this.fallbackSrc;
+    return this.displayImages[0] || this.fallbackSrc;
   }
 
   get currentSrcSet() {
-    return this.hasCarousel ? "" : this.srcSet;
-  }
-
-  get hasCarousel() {
-    return this.displayImages.length > 1;
-  }
-
-  get carouselDots() {
-    return this.displayImages.map((image, index) => ({
-      image,
-      index,
-      active: index === this.selectedIndex,
-    }));
-  }
-
-  ensureGalleryLoaded() {
-    const topicId = this.topic?.id;
-
-    if (!topicId || this.loadedTopicId === topicId) {
-      return;
-    }
-
-    this.loadedTopicId = topicId;
-
-    if (TOPIC_GALLERY_CACHE.has(topicId)) {
-      this.galleryImages = TOPIC_GALLERY_CACHE.get(topicId);
-      this.selectedIndex = 0;
-      return;
-    }
-
-    fetch(`/t/${topicId}.json`, {
-      credentials: "same-origin",
-      headers: { Accept: "application/json" },
-    })
-      .then((response) => (response.ok ? response.json() : null))
-      .then((payload) => {
-        const cooked = payload?.post_stream?.posts?.[0]?.cooked || "";
-        const images = imageUrlsFromCooked(cooked);
-
-        TOPIC_GALLERY_CACHE.set(topicId, images);
-
-        if (this.loadedTopicId === topicId) {
-          this.galleryImages = images;
-          this.selectedIndex = 0;
-        }
-      })
-      .catch(() => {
-        TOPIC_GALLERY_CACHE.set(topicId, []);
-      });
-  }
-
-  @action
-  previousImage(event) {
-    event.preventDefault();
-    event.stopPropagation();
-
-    if (!this.hasCarousel) {
-      return;
-    }
-
-    this.selectedIndex =
-      (this.selectedIndex - 1 + this.displayImages.length) %
-      this.displayImages.length;
-  }
-
-  @action
-  nextImage(event) {
-    event.preventDefault();
-    event.stopPropagation();
-
-    if (!this.hasCarousel) {
-      return;
-    }
-
-    this.selectedIndex = (this.selectedIndex + 1) % this.displayImages.length;
-  }
-
-  @action
-  selectImage(event) {
-    event.preventDefault();
-    event.stopPropagation();
-
-    this.selectedIndex = Number(event.currentTarget.dataset.index || 0);
+    return this.srcSet;
   }
 
   <template>
@@ -234,39 +123,6 @@ export default class TopicThumbnail extends Component {
           />
         {{/if}}
       </a>
-      {{#if this.hasCarousel}}
-        <div class="moaclab-topic-card__carousel-controls">
-          <button
-            type="button"
-            class="moaclab-topic-card__carousel-button --prev"
-            title="上一张"
-            aria-label="上一张"
-            {{on "click" this.previousImage}}
-          >
-            {{icon "chevron-left"}}
-          </button>
-          <button
-            type="button"
-            class="moaclab-topic-card__carousel-button --next"
-            title="下一张"
-            aria-label="下一张"
-            {{on "click" this.nextImage}}
-          >
-            {{icon "chevron-right"}}
-          </button>
-          <div class="moaclab-topic-card__carousel-dots" aria-hidden="true">
-            {{#each this.carouselDots as |dot|}}
-              <button
-                type="button"
-                class={{if dot.active "is-active" ""}}
-                data-index={{dot.index}}
-                tabindex="-1"
-                {{on "click" this.selectImage}}
-              ></button>
-            {{/each}}
-          </div>
-        </div>
-      {{/if}}
     </div>
   </template>
 }

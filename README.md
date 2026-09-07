@@ -4,6 +4,12 @@ Moaclab visual fork of the official Discourse Topic Cards theme component.
 It keeps the upstream data flow, navigation, likes, replies, and infinite topic
 loading, while applying the image-led card layout used by the Keycaps category.
 
+## 1.0.66
+
+- Removes the per-card `/t/{id}.json` gallery requests. Cards now use thumbnail
+  data already included in the category topic list, preventing request bursts
+  that trigger Discourse's `user_10_secs_limit` and `user_60_secs_limit`.
+
 ## 1.0.11
 
 - Moves the complete phone composition into Discourse's dedicated mobile
