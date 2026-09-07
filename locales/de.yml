@@ -1,0 +1,25 @@
+# WARNING: Never edit this file.
+# It will be overwritten when translations are pulled from Crowdin.
+#
+# To work with us on translations, join this project:
+# https://translate.discourse.org/
+
+de:
+  theme_metadata:
+    description: "Eine Discourse-Komponente zur Anzeige der Themenliste im Kartenformat mit Vorschaubildern, sofern verfügbar."
+    settings:
+      show_likes: "„Gefällt mir“-Angaben auf der Themenkarte anzeigen"
+      show_views: "Aufrufe auf der Themenkarte anzeigen"
+      show_reply_count: "Antwortanzahl auf der Themenkarte anzeigen"
+      show_activity: "Aktivität auf der Themenkarte anzeigen"
+      show_publish_date: "Veröffentlichungsdatum auf der Themenkarte anzeigen"
+      set_card_max_height: "Lege die maximale Höhe für Themenkarten fest. Wenn nicht festgelegt, passen sich die Karten der Höhe des Bildes an."
+      card_max_height: "Die maximale Höhe für die Themenkarten. Wird nur verwendet, wenn set_card_max_height aktiviert ist. Standardeinstellung beträgt 275 Pixel."
+      show_on_categories: "Themenkarten in diesen Kategorien anzeigen. Wenn leer, werden Themenkarten überall angezeigt."
+      show_for_suggested_topics: "Themenkarten für vorgeschlagene Themen anzeigen"
+  published: "Veröffentlicht"
+  like_toggle:
+    like: "Gefällt mir"
+    like_disabled: "Du kannst kein „Gefällt mir“ für diesen Beitrag vergeben."
+    cannot_like_topic: "Entschuldige, du kannst dieses „Gefällt mir“ nicht entfernen."
+    cannot_remove_like: "Entschuldige, du kannst kein „Gefällt mir“ für dieses Thema vergeben."

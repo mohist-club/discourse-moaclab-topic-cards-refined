@@ -1,0 +1,31 @@
+{
+  "about_url": "https://moaclab.com/c/keycaps/8",
+  "license_url": "https://github.com/discourse/discourse-topic-cards/blob/main/LICENSE",
+  "assets": {},
+  "name": "Moaclab Topic Cards Refined",
+  "authors": "Discourse, Moaclab",
+  "theme_version": "1.0.53",
+  "component": true,
+  "modifiers": {
+    "topic_thumbnail_sizes": [
+      [200, 200],
+      [300, 300],
+      [400, 400],
+      [600, 600],
+      [800, 800]
+    ],
+    "svg_icons": [
+      "heart",
+      "d-liked",
+      "d-unliked",
+      "comment",
+      "link",
+      "share",
+      "chevron-left",
+      "chevron-right",
+      "ellipsis"
+    ],
+    "serialize_topic_excerpts": true,
+    "serialize_topic_op_likes_data": true
+  }
+}

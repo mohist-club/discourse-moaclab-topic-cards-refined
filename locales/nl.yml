@@ -1,0 +1,25 @@
+# WARNING: Never edit this file.
+# It will be overwritten when translations are pulled from Crowdin.
+#
+# To work with us on translations, join this project:
+# https://translate.discourse.org/
+
+nl:
+  theme_metadata:
+    description: "Een Discourse-component om de topicslijst in kaartformaat weer te geven, met miniaturen waar beschikbaar."
+    settings:
+      show_likes: "Likes weergegen op topickaart"
+      show_views: "Weergaven weergeven op topickaart"
+      show_reply_count: "Aantal reacties weergeven op topickaart"
+      show_activity: "Activiteit weergeven op topickaart"
+      show_publish_date: "Publicatiedatum weergeven op topickaart"
+      set_card_max_height: "Stel de maximale hoogte in voor de topickaarten. Als deze niet is ingesteld, groeien de kaarten tot de hoogte van de beeldweergave."
+      card_max_height: "De maximale hoogte voor de topickaarten. Wordt alleen gebruikt als set_card_max_height waar is. Standaard is dit 275 pixels."
+      show_on_categories: "Toon topickaarten in deze categorieën. Indien leeg, toon dan overal topickaarten."
+      show_for_suggested_topics: "Themakaarten tonen voor uitgelichte topics"
+  published: "Gepubliceerd"
+  like_toggle:
+    like: "Liken"
+    like_disabled: "Je kunt dit bericht niet liken."
+    cannot_like_topic: "Je kunt die like niet verwijderen."
+    cannot_remove_like: "Je kunt dat topic niet verwijderen."

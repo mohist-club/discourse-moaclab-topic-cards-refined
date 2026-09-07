@@ -1,0 +1,671 @@
+:root {
+  --moac-card-radius: 16px;
+  --moac-card-gap: 0;
+  --moac-card-feed-width: 756px;
+  --moac-card-border: color-mix(in srgb, var(--primary) 13%, transparent);
+  --moac-card-border-strong: color-mix(
+    in srgb,
+    var(--primary) 18%,
+    transparent
+  );
+  --moac-card-muted: color-mix(in srgb, var(--primary) 58%, transparent);
+  --moac-card-soft: color-mix(in srgb, var(--primary) 5%, var(--secondary));
+  --moac-card-action: #eef1f3;
+  --moac-card-action-hover: #e6eaed;
+  --moac-card-action-icon: #0f1f2e;
+  --moac-card-action-icon-hover: #0f1f2e;
+}
+
+// Reddit-style feed card. Scoped to the transformed category list only.
+.topic-cards-list.moaclab-topic-cards-v111 {
+  container-type: inline-size;
+  display: block;
+  width: 100%;
+  margin-top: 0;
+  background: transparent;
+
+  .topic-list-header,
+  .topic-list-item-separator,
+  .moaclab-topic-card-header,
+  .after-topic-list-item-outlet {
+    display: none;
+  }
+
+  .topic-list-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    max-width: var(--moac-card-feed-width);
+    margin-inline: auto;
+    border: 0;
+    background: transparent;
+  }
+
+  tr.topic-card,
+  tr.topic-card.has-max-height {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto !important;
+    min-height: 0;
+    max-height: none !important;
+    overflow: visible;
+    border: 0;
+    background: transparent;
+
+    &:hover,
+    &.selected {
+      cursor: pointer;
+    }
+
+    &:hover .moaclab-topic-card__body,
+    &.selected .moaclab-topic-card__body {
+      border-radius: 18px;
+      background: color-mix(in srgb, var(--primary) 3.8%, var(--secondary));
+    }
+
+    &:focus-within .moaclab-topic-card__shell {
+      outline: 2px solid color-mix(in srgb, var(--tertiary) 36%, transparent);
+      outline-offset: 2px;
+    }
+  }
+
+  .moaclab-topic-card__cell {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  .moaclab-topic-card__shell {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    overflow: visible;
+    border: 0;
+    border-top: 1px solid var(--moac-card-border);
+    border-radius: 0;
+    background: var(--secondary);
+    box-shadow: none;
+    transition:
+      border-color 130ms ease,
+      background-color 130ms ease;
+  }
+
+  tr.topic-card:last-child .moaclab-topic-card__shell {
+    border-bottom: 1px solid var(--moac-card-border);
+  }
+
+  .moaclab-topic-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0 !important;
+    min-width: 0;
+    padding: 14px 16px 16px;
+    border: 0;
+    background: transparent;
+    transition:
+      border-radius 130ms ease,
+      background-color 130ms ease;
+  }
+
+  .moaclab-topic-card__byline {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 0;
+    min-height: 28px;
+    height: 28px;
+    margin: 0 !important;
+    padding: 0 !important;
+    padding-block: 0 !important;
+    gap: 7px;
+    color: var(--moac-card-muted);
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .moaclab-topic-card__author-meta {
+    display: inline-flex;
+    align-items: center;
+    min-width: 0;
+    gap: 7px;
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+    }
+
+    > a {
+      display: inline-flex;
+      align-items: center;
+      flex: none;
+      text-decoration: none;
+    }
+  }
+
+  .moaclab-topic-card__community {
+    min-width: 0;
+    overflow: hidden;
+    color: var(--primary);
+    font-weight: 760;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .moaclab-topic-card__author-link {
+    min-width: 0;
+    overflow: hidden;
+    color: var(--primary);
+    font-weight: 760;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &:hover {
+      color: var(--primary);
+      text-decoration: none;
+    }
+  }
+
+  .moaclab-topic-card__publish-date {
+    display: inline-flex;
+    align-items: center;
+    flex: none;
+    white-space: nowrap;
+
+    &::before {
+      content: "·";
+      margin-right: 7px;
+      color: color-mix(in srgb, var(--primary) 46%, transparent);
+    }
+  }
+
+  .moaclab-topic-card__more-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: 32px;
+    height: 32px;
+    min-height: 32px;
+    padding: 0 !important;
+    color: var(--moac-card-action-icon);
+    background: transparent;
+    opacity: 1;
+    visibility: visible;
+
+    .d-icon {
+      display: block !important;
+      width: 18px;
+      height: 18px;
+      color: inherit;
+      opacity: 1;
+    }
+
+    &:hover {
+      color: var(--moac-card-action-icon-hover);
+      background: var(--moac-card-action);
+    }
+  }
+
+  .moaclab-topic-card__title {
+    display: block !important;
+    min-width: 0;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    padding-block: 0 !important;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.18;
+    letter-spacing: 0;
+
+    a {
+      display: block;
+      max-width: 100%;
+      margin: 0 !important;
+      padding: 0 !important;
+      color: var(--primary);
+      line-height: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--primary);
+      text-decoration: none;
+    }
+  }
+
+  .moaclab-topic-card__excerpt {
+    display: none;
+    max-width: 82ch;
+    min-width: 0;
+    margin: -4px 0 14px;
+    overflow: hidden;
+    color: var(--moac-card-muted);
+    font-size: 0.95rem;
+    line-height: 1.45;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+
+    :is(.topic-excerpt-more, .read-more, .excerpt-more) {
+      display: none !important;
+    }
+  }
+
+  .topic-card__thumbnail,
+  .no-thumbnail {
+    position: relative;
+    display: block;
+    width: 100%;
+    min-width: 0;
+    margin: 0 !important;
+    overflow: hidden;
+    border: 0;
+    border-radius: var(--moac-card-radius);
+    background: var(--moac-card-soft);
+
+    > a {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .link-bottom-line.moaclab-topic-card__byline
+    + .link-top-line.moaclab-topic-card__title {
+    margin-top: 2px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .link-top-line.moaclab-topic-card__title + .topic-card__thumbnail,
+  .link-top-line.moaclab-topic-card__title + .no-thumbnail {
+    margin-top: 0 !important;
+  }
+
+  .topic-card__thumbnail {
+    aspect-ratio: 1.52 / 1;
+  }
+
+  .moaclab-topic-card__carousel-button {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    min-height: 44px;
+    padding: 0 !important;
+    border: 0;
+    border-radius: 50%;
+    color: #fff;
+    background: rgb(0, 0, 0, 0.56);
+    box-shadow: none;
+    opacity: 0.92;
+    transform: translateY(-50%);
+
+    .d-icon {
+      width: 24px;
+      height: 24px;
+      color: inherit;
+      font-size: 24px;
+    }
+
+    &:hover {
+      color: #fff;
+      background: rgb(0, 0, 0, 0.68);
+    }
+
+    &.--prev {
+      left: 16px;
+    }
+
+    &.--next {
+      right: 16px;
+    }
+  }
+
+  .moaclab-topic-card__carousel-dots {
+    position: absolute;
+    left: 50%;
+    bottom: 12px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 18px;
+    padding: 4px 7px;
+    gap: 6px;
+    border-radius: 999px;
+    background: rgb(0, 0, 0, 0.38);
+    transform: translateX(-50%);
+
+    button {
+      display: block;
+      width: 8px;
+      height: 8px;
+      min-height: 8px;
+      padding: 0 !important;
+      border: 0;
+      border-radius: 50%;
+      background: rgb(255, 255, 255, 0.38);
+
+      &.is-active {
+        background: #fff;
+      }
+    }
+  }
+
+  .topic-card__thumbnail .main-thumbnail {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: inherit;
+    transition: transform 180ms ease;
+  }
+
+  tr.topic-card:hover .topic-card__thumbnail .main-thumbnail {
+    transform: scale(1.01);
+  }
+
+  .no-thumbnail {
+    display: none;
+  }
+
+  .moaclab-topic-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 0;
+    margin-top: 14px;
+    gap: 12px;
+  }
+
+  .moaclab-topic-card__taxonomy {
+    display: none;
+    min-width: 0;
+
+    .discourse-tag {
+      display: inline-flex;
+      align-items: center;
+      max-width: 18em;
+      min-height: 34px;
+      padding: 7px 12px;
+      overflow: hidden;
+      border: 0;
+      border-radius: 999px;
+      color: var(--primary);
+      background: var(--moac-card-action);
+      font-size: 0.85rem;
+      font-weight: 700;
+      line-height: 1.1;
+      text-decoration: none;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .discourse-tag__dot {
+      flex: none;
+      width: 7px;
+      height: 7px;
+      margin-right: 7px;
+      border-radius: 50%;
+      background: color-mix(in srgb, var(--tertiary) 70%, var(--primary));
+    }
+  }
+
+  .moaclab-topic-card__stats {
+    display: inline-flex;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-left: 0;
+    color: var(--moac-card-action-icon);
+  }
+
+  .moaclab-topic-card__native-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: 48px;
+    min-height: 48px;
+    padding: 0 18px !important;
+    gap: 10px;
+    border: 0;
+    border-radius: 999px;
+    color: var(--moac-card-action-icon);
+    background: var(--moac-card-action);
+    font-size: 18px;
+    font-weight: 740;
+    line-height: 1;
+    white-space: nowrap;
+    text-decoration: none;
+
+    .d-icon {
+      width: 28px;
+      height: 28px;
+      color: inherit;
+      font-size: 28px;
+    }
+
+    &:hover {
+      color: var(--moac-card-action-icon-hover);
+      background: var(--moac-card-action-hover);
+      text-decoration: none;
+    }
+  }
+
+  .topic__like-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    .moaclab-topic-card__reaction-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      width: 100vw;
+      height: 100vh;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      cursor: default;
+    }
+
+    .moaclab-topic-card__reaction-picker {
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 0;
+      z-index: 41;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 14px;
+      border: 1px solid var(--primary-low);
+      border-radius: 14px;
+      color: var(--primary);
+      background: var(--secondary);
+      box-shadow: 0 10px 28px
+        color-mix(in srgb, var(--primary) 16%, transparent);
+    }
+
+    .moaclab-topic-card__reaction-option {
+      width: 38px;
+      height: 38px;
+      min-height: 38px;
+      padding: 0 !important;
+      border-radius: 999px;
+      background: transparent;
+
+      img {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+      }
+
+      &:hover,
+      &.is-used {
+        background: color-mix(in srgb, var(--tertiary) 12%, var(--secondary));
+      }
+    }
+  }
+
+  .topic__like-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: 48px;
+    min-height: 48px;
+    padding: 0 18px !important;
+    gap: 10px;
+    border: 0;
+    border-radius: 999px;
+    color: var(--moac-card-action-icon);
+    background: var(--moac-card-action);
+    font-size: 18px;
+    font-weight: 740;
+    line-height: 1;
+
+    .d-icon {
+      width: 28px;
+      height: 28px;
+      color: inherit;
+      font-size: 28px;
+    }
+
+    .topic__like-reaction {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+    }
+
+    .topic__like-count {
+      min-width: 1ch;
+      text-align: center;
+    }
+
+    &:hover,
+    &.--liked {
+      color: #ea3869;
+      background: #fce7ee;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--tertiary);
+      outline-offset: 2px;
+    }
+
+    &:disabled {
+      cursor: default;
+      opacity: 1;
+    }
+  }
+
+  .moaclab-topic-card__share-action {
+    flex: none;
+    min-width: 128px;
+  }
+}
+
+@container (width <= 760px) {
+  .topic-cards-list.moaclab-topic-cards-v111 {
+    --moac-card-gap: 12px;
+    --moac-card-radius: 11px;
+
+    .topic-list-body {
+      max-width: 100%;
+      padding-inline: 0;
+    }
+
+    .moaclab-topic-card__body {
+      padding: 14px 14px 13px;
+    }
+
+    .moaclab-topic-card__byline {
+      min-height: 24px;
+      margin-bottom: 5px !important;
+      gap: 6px;
+      font-size: 0.76rem;
+      line-height: 18px;
+
+      .avatar {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    .moaclab-topic-card__title {
+      margin-bottom: 9px !important;
+      font-size: 1.16rem;
+      line-height: 1.23;
+    }
+
+    .moaclab-topic-card__excerpt {
+      margin-bottom: 11px;
+      font-size: 0.84rem;
+      line-height: 1.4;
+      -webkit-line-clamp: 2;
+    }
+
+    .topic-card__thumbnail {
+      aspect-ratio: 4 / 3;
+    }
+
+    .moaclab-topic-card__footer {
+      align-items: center;
+      margin-top: 11px;
+      gap: 8px;
+    }
+
+    .moaclab-topic-card__taxonomy .discourse-tag,
+    .moaclab-topic-card__native-action,
+    .topic__like-button {
+      height: 34px;
+      min-height: 34px;
+      padding: 0 10px !important;
+      font-size: 0.78rem;
+    }
+
+    .moaclab-topic-card__stats {
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+  }
+}
+
+@container (width <= 460px) {
+  .topic-cards-list.moaclab-topic-cards-v111 {
+    .moaclab-topic-card__footer {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .moaclab-topic-card__stats {
+      width: auto;
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .topic-cards-list.moaclab-topic-cards-v111 {
+    tr.topic-card,
+    .topic-card__thumbnail .main-thumbnail {
+      transition: none;
+    }
+  }
+}

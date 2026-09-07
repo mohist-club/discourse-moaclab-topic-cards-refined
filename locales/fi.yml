@@ -1,0 +1,23 @@
+# WARNING: Never edit this file.
+# It will be overwritten when translations are pulled from Crowdin.
+#
+# To work with us on translations, join this project:
+# https://translate.discourse.org/
+
+fi:
+  theme_metadata:
+    description: "Discourse-komponentti, joka näyttää ketjuluettelon korttimuodossa, jossa esikatselukuvat ovat käytettävissä."
+    settings:
+      show_likes: "Näytä tykkäykset ketjukortissa"
+      show_views: "Näytä katselut ketjukortissa"
+      show_reply_count: "Näytä vastausten määrä ketjukortissa"
+      show_activity: "Näytä toiminta ketjukortissa"
+      show_publish_date: "Näytä julkaisupäivä ketjukortissa"
+      set_card_max_height: "Aseta ketjukorttien enimmäiskorkeus. Jos korkeutta ei ole asetettu, kortit kasvavat kuvan hahmontamisen korkeuteen."
+      card_max_height: "Ketjukorttien enimmäiskorkeus. Käytetään vain, jos set_card_max_height on tosi. Oletus on 275 pikseliä."
+  published: "Julkaistu"
+  like_toggle:
+    like: "Tykkää"
+    like_disabled: "Et voi tykätä tästä viestistä."
+    cannot_like_topic: "Valitettavasti et voi poistaa tätä tykkäystä."
+    cannot_remove_like: "Valitettavasti et voi tykätä tästä ketjusta."

@@ -1,0 +1,26 @@
+# WARNING: Never edit this file.
+# It will be overwritten when translations are pulled from Crowdin.
+#
+# To work with us on translations, join this project:
+# https://translate.discourse.org/
+
+zh_CN:
+  theme_metadata:
+    description: "基于 Discourse 官方 Topic Cards 的 Moaclab 图片优先话题卡片布局。"
+    settings:
+      card_layout: "卡片布局：一行三列图片卡片，或左图右文紧凑列表"
+      show_likes: "在话题卡片上显示赞数"
+      show_views: "在话题卡片上显示浏览次数"
+      show_reply_count: "在话题卡片上显示回复数"
+      show_activity: "在话题卡片上显示活动"
+      show_publish_date: "在话题卡片上显示发布日期"
+      set_card_max_height: "设置话题卡片的最大高度。如果不设置，卡片将增长到图片渲染的高度。"
+      card_max_height: "话题卡片的最大高度。仅当 set_card_max_height 为真时才能使用。默认值为 275px。"
+      show_on_categories: "显示这些类别的话题卡片。如果为空，则显示所有类别的话题卡片。"
+      show_for_suggested_topics: "显示建议话题的话题卡片"
+  published: "发布日期"
+  like_toggle:
+    like: "点赞"
+    like_disabled: "您不能点赞此帖子。"
+    cannot_like_topic: "抱歉，您无法移除该赞。"
+    cannot_remove_like: "抱歉，您无法点赞该话题。"

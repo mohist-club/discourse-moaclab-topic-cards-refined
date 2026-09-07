@@ -1,0 +1,34 @@
+card_layout:
+  type: enum
+  default: grid
+  choices:
+    - grid
+    - horizontal
+show_likes:
+  type: bool
+  default: true
+show_views:
+  type: bool
+  default: false
+show_reply_count:
+  type: bool
+  default: true
+show_activity:
+  type: bool
+  default: false
+show_publish_date:
+  type: bool
+  default: true
+set_card_max_height:
+  type: bool
+  default: false
+card_max_height:
+  type: integer
+  default: 275
+show_on_categories:
+  type: list
+  list_type: category
+  default: "8"
+show_for_suggested_topics:
+  type: bool
+  default: false

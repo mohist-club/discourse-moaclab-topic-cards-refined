@@ -1,0 +1,25 @@
+# WARNING: Never edit this file.
+# It will be overwritten when translations are pulled from Crowdin.
+#
+# To work with us on translations, join this project:
+# https://translate.discourse.org/
+
+he:
+  theme_metadata:
+    description: "רכיב Discourse להצגת רשימת הנושאים בתבנית של כרטיס, עם תמונות ממוזערות איפה שניתן."
+    settings:
+      show_likes: "הצגת לייקים בכרטיס הנושא"
+      show_views: "הצגת צפיות בכרטיס הנושא"
+      show_reply_count: "הצגת כמות תגובות בכרטיס הנושא"
+      show_activity: "הצגת פעילות בכרטיס הנושא שלך"
+      show_publish_date: "הצגת תאריך פרסום בכרטיס הנושא"
+      set_card_max_height: "הגדרת גובה מרבי לכרטיסי נושאים. אם לא הוגדר, הכרטיסים יוגדלו לגובה התמונה המעובדת."
+      card_max_height: "הגובה המרבי לכרטיסי הנושא. בשימוש רק אם set_card_max_height (הגדרות גובה כרטיס מרבי) הוא חיובי. ברירת המחדל היא 275 פיקסלים."
+      show_on_categories: "הצגת כרטיסי נושאים על הקטגוריות האלה. אם ריק, להציג את כרטיסי הנושאים בכל מקום."
+      show_for_suggested_topics: "הצגת כרטיסי נושאים לנושאים מוצעים"
+  published: "מפורסם"
+  like_toggle:
+    like: "לייק"
+    like_disabled: "אי אפשר לסמן לייק על הפוסט הזה."
+    cannot_like_topic: "אין לך הרשאה להסיר את הלייק הזה, סליחה."
+    cannot_remove_like: "אין לך הרשאה לסמן לייק על הנושא הזה, סליחה."
