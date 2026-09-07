@@ -1,4 +1,8 @@
 import Component from "@glimmer/component";
+import { action } from "@ember/object";
+import { on } from "@ember/modifier";
+import { service } from "@ember/service";
+import ShareTopicModal from "discourse/components/modal/share-topic";
 import UserLink from "discourse/components/user-link";
 import avatar from "discourse/helpers/avatar";
 import icon from "discourse/helpers/d-icon";
@@ -26,6 +30,8 @@ function cleanTopicExcerpt(excerpt = "") {
 }
 
 export default class MoaclabHighContextCard extends Component {
+  @service modal;
+
   get creatorName() {
     const creator = this.args.topic.creator;
     return prioritizeNameInUx(creator?.name) ? creator.name : creator?.username;
@@ -95,6 +101,18 @@ export default class MoaclabHighContextCard extends Component {
       this.args.topic.replyCount ??
       Math.max((this.args.topic.posts_count ?? 1) - 1, 0)
     );
+  }
+
+  @action
+  openShareTopic(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    this.modal.show(ShareTopicModal, {
+      model: {
+        topic: this.args.topic,
+      },
+    });
   }
 
   <template>
@@ -191,10 +209,11 @@ export default class MoaclabHighContextCard extends Component {
               {{/if}}
             </div>
 
-            <a
-              href={{@topic.lastUnreadUrl}}
+            <button
+              type="button"
               class="btn btn-flat btn-icon-text moaclab-topic-card__native-action moaclab-topic-card__share-action"
               title="分享"
+              {{on "click" this.openShareTopic}}
             >
               <span
                 class="moaclab-topic-card__line-icon --share"
@@ -207,7 +226,7 @@ export default class MoaclabHighContextCard extends Component {
                 </svg>
               </span>
               <span>Share</span>
-            </a>
+            </button>
           </div>
         </div>
       </article>
