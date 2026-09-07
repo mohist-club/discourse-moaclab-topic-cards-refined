@@ -38,7 +38,8 @@
     width: 100%;
     max-width: var(--moac-card-feed-width);
     margin-inline: auto;
-    border: 0 !important;
+    border: 0;
+    border-top: 1px solid var(--moac-card-border);
     background: transparent;
   }
 

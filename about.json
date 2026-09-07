@@ -4,7 +4,7 @@
   "assets": {},
   "name": "Moaclab Topic Cards Refined",
   "authors": "Discourse, Moaclab",
-  "theme_version": "1.0.58",
+  "theme_version": "1.0.59",
   "component": true,
   "modifiers": {
     "topic_thumbnail_sizes": [
