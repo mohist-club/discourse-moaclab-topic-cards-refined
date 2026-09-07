@@ -4,6 +4,16 @@ Moaclab visual fork of the official Discourse Topic Cards theme component.
 It keeps the upstream data flow, navigation, likes, replies, and infinite topic
 loading, while applying the image-led card layout used by the Keycaps category.
 
+## 1.0.68
+
+- Rebuilds the card action row with native Discourse like, comment, view, and
+  share icons at consistent pixel sizes and accessible 44px targets.
+- Uses theme-derived foreground, surface, hover, active, border, and focus
+  colors so the controls remain legible in both light and dark color schemes.
+- Aligns the action pills at the left with tighter spacing and replaces the
+  full-width row rule with a balanced inset divider.
+- Adds pressed, busy, and descriptive labels to the interactive controls.
+
 ## 1.0.67
 
 - Makes `card_layout` functional: `grid` keeps the image-led vertical card and
@@ -23,19 +33,19 @@ loading, while applying the image-led card layout used by the Keycaps category.
 
 ## Settings
 
-| Setting | Effect |
-| --- | --- |
-| `card_layout` | `grid` uses an image-led vertical card; `horizontal` uses image-left/content-right on desktop and automatically stacks on mobile. |
-| `show_likes` | Shows the current like count and, when allowed by Discourse, the native like action. |
-| `show_views` | Shows the topic view count. |
-| `show_reply_count` | Shows replies, excluding the opening post. |
-| `show_activity` | Shows the latest activity time. |
-| `show_publish_date` | Shows the original publication date beside the author. |
-| `show_on_homepage` | Enables cards on the main latest, hot, and top discovery routes. |
-| `set_card_max_height` | Enables the desktop media-height limit without clipping text or actions. |
-| `card_max_height` | Sets that desktop media limit in pixels; ignored when the toggle is off and on mobile. |
-| `show_on_categories` | Limits cards to selected categories; an empty selection enables all category lists. |
-| `show_for_suggested_topics` | Enables the card renderer for suggested topics. |
+| Setting                     | Effect                                                                                                                            |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `card_layout`               | `grid` uses an image-led vertical card; `horizontal` uses image-left/content-right on desktop and automatically stacks on mobile. |
+| `show_likes`                | Shows the current like count and, when allowed by Discourse, the native like action.                                              |
+| `show_views`                | Shows the topic view count.                                                                                                       |
+| `show_reply_count`          | Shows replies, excluding the opening post.                                                                                        |
+| `show_activity`             | Shows the latest activity time.                                                                                                   |
+| `show_publish_date`         | Shows the original publication date beside the author.                                                                            |
+| `show_on_homepage`          | Enables cards on the main latest, hot, and top discovery routes.                                                                  |
+| `set_card_max_height`       | Enables the desktop media-height limit without clipping text or actions.                                                          |
+| `card_max_height`           | Sets that desktop media limit in pixels; ignored when the toggle is off and on mobile.                                            |
+| `show_on_categories`        | Limits cards to selected categories; an empty selection enables all category lists.                                               |
+| `show_for_suggested_topics` | Enables the card renderer for suggested topics.                                                                                   |
 
 ## 1.0.11
 

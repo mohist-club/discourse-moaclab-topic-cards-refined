@@ -11,10 +11,20 @@
   );
   --moac-card-muted: color-mix(in srgb, var(--primary) 58%, transparent);
   --moac-card-soft: color-mix(in srgb, var(--primary) 5%, var(--secondary));
-  --moac-card-action: #eef2f4;
-  --moac-card-action-hover: #e3e8eb;
-  --moac-card-action-icon: #000;
-  --moac-card-action-icon-hover: #000;
+  --moac-card-action: color-mix(in srgb, var(--primary) 9%, var(--secondary));
+  --moac-card-action-hover: color-mix(
+    in srgb,
+    var(--primary) 15%,
+    var(--secondary)
+  );
+  --moac-card-action-active: color-mix(
+    in srgb,
+    var(--tertiary) 15%,
+    var(--secondary)
+  );
+  --moac-card-action-icon: color-mix(in srgb, var(--primary) 88%, transparent);
+  --moac-card-action-icon-hover: var(--primary);
+  --moac-card-divider-inset: 12px;
 }
 
 // Reddit-style feed card. Scoped to the transformed category list only.
@@ -55,9 +65,16 @@
     max-height: none !important;
     overflow: visible;
     border: 0;
-    border-top: 1px solid var(--moac-card-border);
     background: transparent;
     box-shadow: none !important;
+
+    &::before {
+      content: "";
+      display: block;
+      width: calc(100% - (var(--moac-card-divider-inset) * 2));
+      margin-inline: auto;
+      border-top: 1px solid var(--moac-card-border);
+    }
 
     &:hover,
     &.selected {
@@ -329,10 +346,11 @@
   .moaclab-topic-card__footer {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
+    flex-wrap: wrap;
     min-width: 0;
-    margin-top: 14px;
-    gap: 12px;
+    margin-top: 12px;
+    gap: 8px;
   }
 
   .moaclab-topic-card__taxonomy {
@@ -370,10 +388,11 @@
 
   .moaclab-topic-card__stats {
     display: inline-flex;
-    flex: 1 1 auto;
+    flex: 0 1 auto;
     align-items: center;
     justify-content: flex-start;
-    gap: 12px;
+    flex-wrap: wrap;
+    gap: 8px;
     margin-left: 0;
     color: var(--moac-card-action-icon);
   }
@@ -383,32 +402,37 @@
     align-items: center;
     justify-content: center;
     width: auto;
-    height: 42px;
-    min-height: 42px;
-    padding: 0 17px !important;
-    gap: 9px;
-    border: 0;
+    height: 44px;
+    min-height: 44px;
+    padding: 0 14px !important;
+    gap: 7px;
+    border: 1px solid transparent;
     border-radius: 999px;
     color: var(--moac-card-action-icon);
     background: var(--moac-card-action);
-    font-size: 15px;
-    font-weight: 760;
+    font-size: 14px;
+    font-weight: 700;
     line-height: 1;
     white-space: nowrap;
     text-decoration: none;
 
-    .d-icon,
-    .moaclab-topic-card__line-icon {
-      width: 22px;
-      height: 22px;
+    .d-icon {
+      width: 19px;
+      height: 19px;
       color: inherit;
-      font-size: 22px;
+      font-size: 19px;
     }
 
     &:hover {
       color: var(--moac-card-action-icon-hover);
       background: var(--moac-card-action-hover);
       text-decoration: none;
+    }
+
+    &:focus-visible {
+      border-color: var(--tertiary);
+      outline: 2px solid color-mix(in srgb, var(--tertiary) 42%, transparent);
+      outline-offset: 2px;
     }
   }
 
@@ -473,24 +497,23 @@
     align-items: center;
     justify-content: center;
     width: auto;
-    height: 42px;
-    min-height: 42px;
-    padding: 0 17px !important;
-    gap: 9px;
-    border: 0;
+    height: 44px;
+    min-height: 44px;
+    padding: 0 14px !important;
+    gap: 7px;
+    border: 1px solid transparent;
     border-radius: 999px;
     color: var(--moac-card-action-icon);
     background: var(--moac-card-action);
-    font-size: 15px;
-    font-weight: 760;
+    font-size: 14px;
+    font-weight: 700;
     line-height: 1;
 
-    .d-icon,
-    .moaclab-topic-card__line-icon {
-      width: 22px;
-      height: 22px;
+    .d-icon {
+      width: 19px;
+      height: 19px;
       color: inherit;
-      font-size: 22px;
+      font-size: 19px;
     }
 
     .topic__like-reaction {
@@ -506,47 +529,26 @@
 
     &:hover,
     &.--liked {
-      color: #ea3869;
-      background: #fce7ee;
+      color: var(--tertiary);
+      background: var(--moac-card-action-active);
     }
 
     &:focus-visible {
-      outline: 2px solid var(--tertiary);
+      border-color: var(--tertiary);
+      outline: 2px solid color-mix(in srgb, var(--tertiary) 42%, transparent);
       outline-offset: 2px;
     }
 
     &:disabled {
       cursor: default;
-      opacity: 1;
+      color: var(--moac-card-muted);
+      opacity: 0.82;
     }
   }
 
   .moaclab-topic-card__share-action {
     flex: none;
-    min-width: 128px;
-  }
-
-  .moaclab-topic-card__line-icon {
-    display: inline-flex;
-    flex: none;
-    align-items: center;
-    justify-content: center;
-
-    svg {
-      display: block;
-      width: 100%;
-      height: 100%;
-      overflow: visible;
-      fill: none;
-      stroke: currentcolor;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-width: 2.15;
-    }
-
-    &.--comment svg {
-      stroke-width: 2;
-    }
+    min-width: 0;
   }
 }
 
@@ -601,6 +603,7 @@
   .topic-cards-list.moaclab-topic-cards-v111 {
     --moac-card-gap: 12px;
     --moac-card-radius: 11px;
+    --moac-card-divider-inset: 8px;
 
     .topic-list-body {
       max-width: 100%;
@@ -653,10 +656,11 @@
     .moaclab-topic-card__taxonomy .discourse-tag,
     .moaclab-topic-card__native-action,
     .topic__like-button {
-      height: 34px;
-      min-height: 34px;
-      padding: 0 10px !important;
-      font-size: 0.78rem;
+      height: 44px;
+      min-height: 44px;
+      padding: 0 12px !important;
+      gap: 6px;
+      font-size: 0.82rem;
     }
 
     .moaclab-topic-card__stats {
