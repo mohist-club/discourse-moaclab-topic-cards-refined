@@ -171,7 +171,16 @@ export default class MoaclabHighContextCard extends Component {
                   href={{@topic.lastUnreadUrl}}
                   title="评论"
                 >
-                  {{icon "comment"}}
+                  <span
+                    class="moaclab-topic-card__line-icon --comment"
+                    aria-hidden="true"
+                  >
+                    <svg viewBox="0 0 24 24" focusable="false">
+                      <path
+                        d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H7l-3 2v-5.2A7.5 7.5 0 1 1 20 11.5Z"
+                      />
+                    </svg>
+                  </span>
                   <span>{{number this.replyCount}}</span>
                 </a>
               {{/if}}
@@ -187,7 +196,16 @@ export default class MoaclabHighContextCard extends Component {
               class="btn btn-flat btn-icon-text moaclab-topic-card__native-action moaclab-topic-card__share-action"
               title="分享"
             >
-              {{icon "share"}}
+              <span
+                class="moaclab-topic-card__line-icon --share"
+                aria-hidden="true"
+              >
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path d="M4 13v5a2 2 0 0 0 2 2h12" />
+                  <path d="M14 4l6 6-6 6" />
+                  <path d="M20 10H9a5 5 0 0 0-5 5" />
+                </svg>
+              </span>
               <span>Share</span>
             </a>
           </div>

@@ -4,7 +4,6 @@ import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
 import concatClass from "discourse/helpers/concat-class";
-import icon from "discourse/helpers/d-icon";
 import number from "discourse/helpers/number";
 import { ajax } from "discourse/lib/ajax";
 
@@ -96,7 +95,12 @@ export default class LikeToggle extends Component {
         }}
         {{on "click" this.toggleLike}}
       >
-        {{icon "arrow-up"}}
+        <span class="moaclab-topic-card__line-icon --up" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d="M12 20V5" />
+            <path d="M5 12l7-7 7 7" />
+          </svg>
+        </span>
         <span class="topic__like-count">{{number this.likeCount}}</span>
       </button>
     </span>

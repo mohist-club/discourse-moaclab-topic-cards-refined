@@ -38,7 +38,7 @@
     width: 100%;
     max-width: var(--moac-card-feed-width);
     margin-inline: auto;
-    border: 0;
+    border: 0 !important;
     background: transparent;
   }
 
@@ -51,8 +51,9 @@
     min-height: 0;
     max-height: none !important;
     overflow: visible;
-    border: 0;
+    border: 0 !important;
     background: transparent;
+    box-shadow: none !important;
 
     &:hover,
     &.selected {
@@ -89,8 +90,7 @@
     width: 100%;
     min-width: 0;
     overflow: visible;
-    border: 0;
-    border-top: 1px solid var(--moac-card-border);
+    border: 0 !important;
     border-radius: 0;
     background: var(--secondary);
     box-shadow: none;
@@ -100,18 +100,15 @@
       background-color 130ms ease;
   }
 
-  tr.topic-card:last-child .moaclab-topic-card__shell {
-    border-bottom: 1px solid var(--moac-card-border);
-  }
-
   .moaclab-topic-card__body {
     display: flex;
     flex-direction: column;
     gap: 0 !important;
     min-width: 0;
     padding: 14px 16px 16px;
-    border: 0;
+    border: 0 !important;
     background: transparent;
+    box-shadow: none !important;
     outline: 0 !important;
     transition:
       border-radius 130ms ease,
@@ -475,7 +472,8 @@
     white-space: nowrap;
     text-decoration: none;
 
-    .d-icon {
+    .d-icon,
+    .moaclab-topic-card__line-icon {
       width: 22px;
       height: 22px;
       color: inherit;
@@ -562,7 +560,8 @@
     font-weight: 760;
     line-height: 1;
 
-    .d-icon {
+    .d-icon,
+    .moaclab-topic-card__line-icon {
       width: 22px;
       height: 22px;
       color: inherit;
@@ -600,6 +599,29 @@
   .moaclab-topic-card__share-action {
     flex: none;
     min-width: 128px;
+  }
+
+  .moaclab-topic-card__line-icon {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      fill: none;
+      stroke: currentcolor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 2.15;
+    }
+
+    &.--comment svg {
+      stroke-width: 2;
+    }
   }
 }
 
