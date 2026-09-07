@@ -65,9 +65,11 @@
       background: color-mix(in srgb, var(--primary) 3.8%, var(--secondary));
     }
 
-    &:focus-within .moaclab-topic-card__shell {
-      outline: 2px solid color-mix(in srgb, var(--tertiary) 36%, transparent);
-      outline-offset: 2px;
+    &:focus,
+    &:focus-within,
+    &.selected {
+      outline: 0 !important;
+      box-shadow: none !important;
     }
   }
 
@@ -76,8 +78,10 @@
     width: 100%;
     min-width: 0;
     padding: 0;
-    border: 0;
+    border: 0 !important;
     background: transparent;
+    box-shadow: none !important;
+    outline: 0 !important;
   }
 
   .moaclab-topic-card__shell {
@@ -90,6 +94,7 @@
     border-radius: 0;
     background: var(--secondary);
     box-shadow: none;
+    outline: 0 !important;
     transition:
       border-color 130ms ease,
       background-color 130ms ease;
@@ -107,6 +112,7 @@
     padding: 14px 16px 16px;
     border: 0;
     background: transparent;
+    outline: 0 !important;
     transition:
       border-radius 130ms ease,
       background-color 130ms ease;
