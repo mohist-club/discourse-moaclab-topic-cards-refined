@@ -2,6 +2,7 @@
   --moac-card-radius: 16px;
   --moac-card-gap: 0;
   --moac-card-feed-width: 756px;
+  --moac-card-max-media-height: #{$card_max_height}px;
   --moac-card-border: color-mix(in srgb, var(--primary) 13%, transparent);
   --moac-card-border-strong: color-mix(
     in srgb,
@@ -298,91 +299,11 @@
     aspect-ratio: 1.52 / 1;
   }
 
-  .moaclab-topic-card__media > .moaclab-topic-card__carousel-controls {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    overflow: hidden;
-    border-radius: inherit;
-    pointer-events: none;
-  }
-
-  .moaclab-topic-card__media
-    > .moaclab-topic-card__carousel-controls
-    > .moaclab-topic-card__carousel-button {
-    position: absolute;
-    top: 50%;
-    z-index: 1;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 34px;
-    height: 34px;
-    min-height: 34px;
-    padding: 0 !important;
-    border: 0;
-    border-radius: 50%;
-    color: #fff;
-    background: rgb(0, 0, 0, 0.32);
-    box-shadow: none;
-    opacity: 0.78;
-    pointer-events: auto;
-    transform: translateY(-50%);
-
-    .d-icon {
-      width: 18px;
-      height: 18px;
-      color: inherit;
-      font-size: 18px;
-    }
-
-    &:hover {
-      color: #fff;
-      background: rgb(0, 0, 0, 0.46);
-      opacity: 0.9;
-    }
-
-    &.--prev {
-      left: 12px;
-    }
-
-    &.--next {
-      right: 12px;
-    }
-  }
-
-  .moaclab-topic-card__media
-    > .moaclab-topic-card__carousel-controls
-    > .moaclab-topic-card__carousel-dots {
-    position: absolute;
-    left: 50%;
-    bottom: 10px;
-    z-index: 1;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 14px;
-    padding: 3px 6px;
-    gap: 5px;
-    border-radius: 999px;
-    background: rgb(0, 0, 0, 0.26);
-    pointer-events: auto;
-    transform: translateX(-50%);
-
-    button {
-      display: block;
-      width: 6px;
-      height: 6px;
-      min-height: 6px;
-      padding: 0 !important;
-      border: 0;
-      border-radius: 50%;
-      background: rgb(255, 255, 255, 0.34);
-
-      &.is-active {
-        background: rgb(255, 255, 255, 0.88);
-      }
-    }
+  tr.topic-card.has-max-height
+    .moaclab-topic-card__media.topic-card__thumbnail {
+    height: var(--moac-card-max-media-height);
+    max-height: var(--moac-card-max-media-height);
+    aspect-ratio: auto;
   }
 
   .moaclab-topic-card__media.topic-card__thumbnail .main-thumbnail {
@@ -629,6 +550,53 @@
   }
 }
 
+@container (width > 760px) {
+  .topic-cards-list.moaclab-topic-cards-v111.topic-cards-layout--horizontal {
+    tr.topic-card:has(.moaclab-topic-card__media.topic-card__thumbnail)
+      .moaclab-topic-card__body {
+      display: grid;
+      grid-template-columns: minmax(180px, 38%) minmax(0, 1fr);
+      grid-template-rows: auto auto 1fr auto;
+      column-gap: 18px;
+      padding-block: 10px;
+    }
+
+    .moaclab-topic-card__byline,
+    .moaclab-topic-card__title,
+    .moaclab-topic-card__footer {
+      grid-column: 2;
+    }
+
+    .moaclab-topic-card__byline {
+      grid-row: 1;
+    }
+
+    .moaclab-topic-card__title {
+      grid-row: 2;
+    }
+
+    .moaclab-topic-card__media.topic-card__thumbnail {
+      grid-column: 1;
+      grid-row: 1 / -1;
+      height: 100%;
+      min-height: 190px;
+      aspect-ratio: auto;
+    }
+
+    .moaclab-topic-card__footer {
+      grid-row: 4;
+      align-self: end;
+    }
+
+    tr.topic-card.has-max-height
+      .moaclab-topic-card__media.topic-card__thumbnail {
+      height: var(--moac-card-max-media-height);
+      min-height: min(190px, var(--moac-card-max-media-height));
+      max-height: var(--moac-card-max-media-height);
+    }
+  }
+}
+
 @container (width <= 760px) {
   .topic-cards-list.moaclab-topic-cards-v111 {
     --moac-card-gap: 12px;
@@ -670,6 +638,9 @@
     }
 
     .moaclab-topic-card__media.topic-card__thumbnail {
+      height: auto !important;
+      min-height: 0 !important;
+      max-height: none !important;
       aspect-ratio: 4 / 3;
     }
 

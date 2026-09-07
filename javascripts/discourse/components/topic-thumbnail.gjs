@@ -14,8 +14,6 @@ function absoluteUrl(url) {
 }
 
 export default class TopicThumbnail extends Component {
-  responsiveRatios = [1, 1.5, 2];
-
   get topic() {
     return this.args.topic || this.args.outletArgs.topic;
   }
@@ -25,25 +23,11 @@ export default class TopicThumbnail extends Component {
     return Array.isArray(this.topic.thumbnails) && this.topic.thumbnails.length;
   }
 
-  @computed("topic.thumbnails", "displayWidth")
+  @computed("topic.thumbnails")
   get srcSet() {
-    const srcSetArray = [];
-
-    this.responsiveRatios.forEach((ratio) => {
-      const target = ratio * this.displayWidth;
-      const match = (this.topic.thumbnails || []).find(
-        (t) => t.url && t.max_width === target
-      );
-      if (match) {
-        srcSetArray.push(`${match.url} ${ratio}x`);
-      }
-    });
-
-    if (srcSetArray.length === 0) {
-      srcSetArray.push(`${this.original.url} 1x`);
-    }
-
-    return srcSetArray.join(",");
+    return this.responsiveThumbnails
+      .map((thumbnail) => `${thumbnail.url} ${thumbnail.width}w`)
+      .join(",");
   }
 
   @computed("topic.thumbnails")
@@ -64,20 +48,36 @@ export default class TopicThumbnail extends Component {
   }
 
   @computed("topic.thumbnails")
-  get fallbackSrc() {
-    const largeEnough = (this.topic.thumbnails || []).filter((t) => {
-      if (!t.url) {
-        return false;
+  get responsiveThumbnails() {
+    const byWidth = new Map();
+
+    (this.topic.thumbnails || []).forEach((thumbnail) => {
+      const width = Number(thumbnail.width || thumbnail.max_width);
+
+      if (thumbnail.url && Number.isFinite(width) && width > 0) {
+        byWidth.set(width, thumbnail);
       }
-      return t.max_width > this.displayWidth * this.responsiveRatios.at(-1);
     });
 
-    const largest = largeEnough.at(-1);
-    if (largest) {
-      return largest.url;
-    }
+    return [...byWidth.entries()]
+      .sort(([a], [b]) => a - b)
+      .map(([width, thumbnail]) => ({ ...thumbnail, width }));
+  }
 
-    return this.original?.url || "";
+  @computed("topic.thumbnails")
+  get fallbackSrc() {
+    const targetWidth = settings.card_layout === "horizontal" ? 400 : 800;
+    const bestFit = this.responsiveThumbnails.find(
+      (thumbnail) => thumbnail.width >= targetWidth
+    );
+
+    return bestFit?.url || this.responsiveThumbnails.at(-1)?.url || "";
+  }
+
+  get imageSizes() {
+    return settings.card_layout === "horizontal"
+      ? "(max-width: 760px) 100vw, 300px"
+      : "(max-width: 760px) 100vw, 756px";
   }
 
   get url() {
@@ -116,10 +116,12 @@ export default class TopicThumbnail extends Component {
             class="main-thumbnail"
             src={{this.currentImageUrl}}
             srcset={{this.currentSrcSet}}
+            sizes={{this.imageSizes}}
             width={{this.width}}
             height={{this.height}}
             alt={{this.topic.title}}
             loading="lazy"
+            decoding="async"
           />
         {{/if}}
       </a>

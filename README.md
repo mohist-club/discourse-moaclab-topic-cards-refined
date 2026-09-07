@@ -4,11 +4,38 @@ Moaclab visual fork of the official Discourse Topic Cards theme component.
 It keeps the upstream data flow, navigation, likes, replies, and infinite topic
 loading, while applying the image-led card layout used by the Keycaps category.
 
+## 1.0.67
+
+- Makes `card_layout` functional: `grid` keeps the image-led vertical card and
+  `horizontal` uses a compact image-left/content-right desktop layout.
+- Makes `set_card_max_height` and `card_max_height` functional by limiting only
+  desktop media, never clipping text or actions; mobile remains unrestricted.
+- Caches the selected category IDs and prevents duplicate topic-list classes.
+- Removes the unused carousel styles and SVG icon registrations.
+- Fixes responsive thumbnail selection by emitting width-based `srcset` and
+  `sizes`, so browsers can avoid downloading the full original image.
+
 ## 1.0.66
 
 - Removes the per-card `/t/{id}.json` gallery requests. Cards now use thumbnail
   data already included in the category topic list, preventing request bursts
   that trigger Discourse's `user_10_secs_limit` and `user_60_secs_limit`.
+
+## Settings
+
+| Setting | Effect |
+| --- | --- |
+| `card_layout` | `grid` uses an image-led vertical card; `horizontal` uses image-left/content-right on desktop and automatically stacks on mobile. |
+| `show_likes` | Shows the current like count and, when allowed by Discourse, the native like action. |
+| `show_views` | Shows the topic view count. |
+| `show_reply_count` | Shows replies, excluding the opening post. |
+| `show_activity` | Shows the latest activity time. |
+| `show_publish_date` | Shows the original publication date beside the author. |
+| `show_on_homepage` | Enables cards on the main latest, hot, and top discovery routes. |
+| `set_card_max_height` | Enables the desktop media-height limit without clipping text or actions. |
+| `card_max_height` | Sets that desktop media limit in pixels; ignored when the toggle is off and on mobile. |
+| `show_on_categories` | Limits cards to selected categories; an empty selection enables all category lists. |
+| `show_for_suggested_topics` | Enables the card renderer for suggested topics. |
 
 ## 1.0.11
 

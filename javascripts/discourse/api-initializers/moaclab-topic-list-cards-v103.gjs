@@ -9,6 +9,12 @@ const MoaclabCardHeader = <template>
 export default apiInitializer((api) => {
   const site = api.container.lookup("service:site");
   const router = api.container.lookup("service:router");
+  const configuredCategoryIds = new Set(
+    (settings.show_on_categories || "")
+      .split("|")
+      .map(Number)
+      .filter(Number.isFinite)
+  );
 
   function isHomepageTopicList() {
     const routeName = router.currentRouteName || "";
@@ -30,7 +36,7 @@ export default apiInitializer((api) => {
       return true;
     }
 
-    if (settings.show_on_categories?.length === 0) {
+    if (configuredCategoryIds.size === 0) {
       return true;
     }
 
@@ -40,20 +46,24 @@ export default apiInitializer((api) => {
       return false;
     }
 
-    const categoryIds = settings.show_on_categories?.split("|").map(Number);
-
-    return categoryIds.includes(currentCat);
+    return configuredCategoryIds.has(Number(currentCat));
   }
 
   api.registerValueTransformer(
     "topic-list-class",
     ({ value: additionalClasses }) => {
       if (enableCards()) {
-        additionalClasses.push("topic-cards-list");
-        additionalClasses.push("moaclab-topic-cards-v111");
-        additionalClasses.push(
-          `topic-cards-layout--${settings.card_layout || "grid"}`
-        );
+        const cardClasses = [
+          "topic-cards-list",
+          "moaclab-topic-cards-v111",
+          `topic-cards-layout--${settings.card_layout || "grid"}`,
+        ];
+
+        cardClasses.forEach((className) => {
+          if (!additionalClasses.includes(className)) {
+            additionalClasses.push(className);
+          }
+        });
       }
 
       return additionalClasses;

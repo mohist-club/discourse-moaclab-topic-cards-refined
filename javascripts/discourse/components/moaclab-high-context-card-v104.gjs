@@ -1,6 +1,6 @@
 import Component from "@glimmer/component";
-import { action } from "@ember/object";
 import { on } from "@ember/modifier";
+import { action } from "@ember/object";
 import { service } from "@ember/service";
 import ShareTopicModal from "discourse/components/modal/share-topic";
 import UserLink from "discourse/components/user-link";

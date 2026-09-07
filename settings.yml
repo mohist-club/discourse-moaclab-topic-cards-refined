@@ -25,9 +25,17 @@ show_on_homepage:
 set_card_max_height:
   type: bool
   default: false
+  description:
+    en: "Limit desktop card media height without clipping titles, metadata, or actions. Mobile cards ignore this limit."
+    zh_CN: "限制桌面端卡片图片高度，不裁切标题、信息或操作栏；移动端不受此限制。"
 card_max_height:
   type: integer
   default: 275
+  min: 160
+  max: 800
+  description:
+    en: "Maximum desktop card media height in pixels when Set card max height is enabled."
+    zh_CN: "启用卡片最大高度后，桌面端图片的最大高度（px）。"
 show_on_categories:
   type: list
   list_type: category
