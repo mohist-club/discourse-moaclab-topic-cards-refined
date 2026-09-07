@@ -10,9 +10,24 @@ export default apiInitializer((api) => {
   const site = api.container.lookup("service:site");
   const router = api.container.lookup("service:router");
 
+  function isHomepageTopicList() {
+    const routeName = router.currentRouteName || "";
+
+    return [
+      "discovery",
+      "discovery.latest",
+      "discovery.hot",
+      "discovery.top",
+    ].includes(routeName);
+  }
+
   function enableCards() {
     if (router.currentRouteName === "topic.fromParamsNear") {
       return settings.show_for_suggested_topics;
+    }
+
+    if (settings.show_on_homepage && isHomepageTopicList()) {
+      return true;
     }
 
     if (settings.show_on_categories?.length === 0) {
