@@ -214,7 +214,13 @@ export default class TopicThumbnail extends Component {
   }
 
   <template>
-    <div class={{if this.hasMedia "topic-card__thumbnail" "no-thumbnail"}}>
+    <div
+      class={{if
+        this.hasMedia
+        "topic-card__thumbnail moaclab-topic-card__media"
+        "no-thumbnail moaclab-topic-card__media"
+      }}
+    >
       <a href={{this.url}}>
         {{#if this.hasMedia}}
           <img
@@ -229,34 +235,36 @@ export default class TopicThumbnail extends Component {
         {{/if}}
       </a>
       {{#if this.hasCarousel}}
-        <button
-          type="button"
-          class="moaclab-topic-card__carousel-button --prev"
-          title="上一张"
-          aria-label="上一张"
-          {{on "click" this.previousImage}}
-        >
-          {{icon "chevron-left"}}
-        </button>
-        <button
-          type="button"
-          class="moaclab-topic-card__carousel-button --next"
-          title="下一张"
-          aria-label="下一张"
-          {{on "click" this.nextImage}}
-        >
-          {{icon "chevron-right"}}
-        </button>
-        <div class="moaclab-topic-card__carousel-dots" aria-hidden="true">
-          {{#each this.carouselDots as |dot|}}
-            <button
-              type="button"
-              class={{if dot.active "is-active" ""}}
-              data-index={{dot.index}}
-              tabindex="-1"
-              {{on "click" this.selectImage}}
-            ></button>
-          {{/each}}
+        <div class="moaclab-topic-card__carousel-controls">
+          <button
+            type="button"
+            class="moaclab-topic-card__carousel-button --prev"
+            title="上一张"
+            aria-label="上一张"
+            {{on "click" this.previousImage}}
+          >
+            {{icon "chevron-left"}}
+          </button>
+          <button
+            type="button"
+            class="moaclab-topic-card__carousel-button --next"
+            title="下一张"
+            aria-label="下一张"
+            {{on "click" this.nextImage}}
+          >
+            {{icon "chevron-right"}}
+          </button>
+          <div class="moaclab-topic-card__carousel-dots" aria-hidden="true">
+            {{#each this.carouselDots as |dot|}}
+              <button
+                type="button"
+                class={{if dot.active "is-active" ""}}
+                data-index={{dot.index}}
+                tabindex="-1"
+                {{on "click" this.selectImage}}
+              ></button>
+            {{/each}}
+          </div>
         </div>
       {{/if}}
     </div>
